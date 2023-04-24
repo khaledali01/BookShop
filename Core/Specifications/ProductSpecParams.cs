@@ -20,9 +20,9 @@
 
         public string? Sort { get; set; }
 
-		private string search;
+		private string? search;
 
-        public string Search 
+        public string? Search 
 		{
 			get => search;
 			set => search = value.ToLower();
