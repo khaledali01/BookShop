@@ -13,10 +13,7 @@
     />
   </a>
 
-  <nav
-    class="d-inline-flex mt-2 mt-md-0 ms-md-auto text-uppercase"
-    style="font-size: larger"
-  >
+  <nav class="d-flex mt-2 mt-md-0 text-uppercase" style="font-size: larger">
     <a
       class="me-3 py-2 link-body-emphasis text-decoration-none"
       [routerLink]="['/']"
@@ -37,12 +34,13 @@
       >Errors</a
     >
   </nav>
-  <div class="d-flex align-items-center">
-    <a class="position-relative">
-      <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
-      <div class="cart-no">5</div>
-    </a>
-    <a class="btn btn-outline-secondary mr-2">Login</a>
-    <a class="btn btn-outline-primary mr-3">Signup</a>
+
+  <a class="position-relative">
+    <i class="fa fa-shopping-cart fa-2x"></i>
+    <div class="cart-no">5</div>
+  </a>
+  <div class="justify-content-between p-4">
+    <a class="btn btn-outline-secondary">Login</a>
+    <a class="btn btn-outline-primary">Signup</a>
   </div>
 </div>
