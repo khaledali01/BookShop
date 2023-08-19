@@ -1,69 +1,35 @@
-﻿using Core.Entities;
-using Microsoft.Extensions.Logging;
 using System.Text.Json;
+using Core.Entities;
+using Infrastructue.Data;
 
 namespace Infrastructure.Data
 {
-	public class StoreContextSeed
-	{
-		public static async Task SeedAsync(StoreContext context, ILoggerFactory loggerFactory)
-		{
-			try
-			{
-				if (!context.ProductBrands.Any())
-				{
+    public class StoreContextSeed
+    {
+        public static async Task SeedAsync(StoreContext context)
+        {
+            if (!context.ProductBrands.Any())
+            {
+                var brandsData = File.ReadAllText("../Infrastructure/Data/SeedData/brands.json");
+                var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
+                context.ProductBrands.AddRange(brands);
+            }
 
-					var brandsData = File.ReadAllText("../Infrastructure/Data/SeedData/brands.json");
+            if (!context.ProductTypes.Any())
+            {
+                var typesData = File.ReadAllText("../Infrastructure/Data/SeedData/types.json");
+                var types = JsonSerializer.Deserialize<List<ProductType>>(typesData);
+                context.ProductTypes.AddRange(types);
+            }
 
-					var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
+            if (!context.Products.Any())
+            {
+                var productsData = File.ReadAllText("../Infrastructure/Data/SeedData/products.json");
+                var products = JsonSerializer.Deserialize<List<Product>>(productsData);
+                context.Products.AddRange(products);
+            }
 
-					foreach (var item in brands)
-					{
-						context.ProductBrands.Add(item);
-					}
-
-					await context.SaveChangesAsync();
-				}
-
-				if (!context.ProductTypes.Any())
-				{
-
-					var TypesData = File.ReadAllText("../Infrastructure/Data/SeedData/types.json");
-
-					var types = JsonSerializer.Deserialize<List<ProductType>>(TypesData);
-
-					foreach (var item in types)
-					{
-						context.ProductTypes.Add(item);
-					}
-
-					await context.SaveChangesAsync();
-				}
-
-				if (!context.Products.Any())
-				{
-
-					var ProductsData = File.ReadAllText("../Infrastructure/Data/SeedData/products.json");
-
-					var products = JsonSerializer.Deserialize<List<Product>>(ProductsData);
-
-					foreach (var item in products)
-					{
-						context.Products.Add(item);
-					}
-
-					await context.SaveChangesAsync();
-				}
-
-			}
-			catch (Exception ex)
-			{
-				var logger = loggerFactory.CreateLogger<StoreContextSeed>();
-				logger.LogError(ex.Message);
-
-			}
-
-
-		}
-	}
+            if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();
+        }
+    }
 }

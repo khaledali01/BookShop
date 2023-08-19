@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.4"/>
-    <PackageReference Include="StackExchange.Redis" Version="2.6.111"/>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
+      <PackageReference Include="StackExchange.Redis" Version="2.6.86" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\core\Core.csproj"/>
+    <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\SeedData\"/>
-  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
+
 </Project>

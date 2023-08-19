@@ -1,15 +1,8 @@
-<ngx-spinner
-  bdColor="rgba(0, 0, 0, 0.8)"
-  size="large"
-  color="#fff"
-  type="ball-rotate"
-  [fullScreen]="true"
-  ><p style="color: white">Loading...</p></ngx-spinner
->
+<ngx-spinner type="timer">
+    <h3>Loading...</h3>
+</ngx-spinner>
 
 <app-nav-bar></app-nav-bar>
 <app-section-header></app-section-header>
 
-<div style="margin-top: 50px">
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
